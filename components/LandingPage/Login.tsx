@@ -9,11 +9,21 @@ interface ILoginProps {
 }
 
 function Login({ show, handleClose }: ILoginProps) {
-	const [userName, setUserName] = useState<string>("");
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
 
-	function doLogin() {
-		handleClose(false);
-		store.dispatch({ type: "loggedIn", payload: userName });
+	async function doLogin() {
+		const response = await fetch("/api/user", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ email: email, password: password }),
+		});
+
+		const userInfo = await response.json();
+		// This dispatch causes the Home component to re-render thus closing the modal.
+		store.dispatch({ type: "loggedIn", payload: userInfo.userInfo });
 	}
 
 	return (
@@ -29,13 +39,17 @@ function Login({ show, handleClose }: ILoginProps) {
 							<Form.Control
 								type="email"
 								placeholder="Enter email"
-								onChange={(e) => setUserName(e.target.value)}
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 						</Form.Group>
 
 						<Form.Group className="mb-3" controlId="formBasicPassword">
 							<Form.Label>Password</Form.Label>
-							<Form.Control type="password" placeholder="Password" />
+							<Form.Control
+								type="password"
+								placeholder="Password"
+								onChange={(e) => setPassword(e.target.value)}
+							/>
 						</Form.Group>
 					</Form>
 				</Modal.Body>

@@ -7,6 +7,11 @@ import { store } from "../reduxTest";
 export default function Home() {
 	const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
 
+	const unsubscribe = store.subscribe(() => {
+		const user = store.getState();
+		setUserLoggedIn(user?.firstName);
+	});
+
 	useEffect(() => {
 		const userInfo = store.getState();
 		if (userInfo.firstName !== null) {
@@ -14,7 +19,8 @@ export default function Home() {
 		} else {
 			setUserLoggedIn(false);
 		}
-	}, [userLoggedIn]);
+		return () => unsubscribe();
+	}, []);
 
 	return (
 		<>

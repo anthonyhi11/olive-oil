@@ -7,9 +7,14 @@ function LoggedInHome() {
 		store.dispatch({ type: "loggedOut", payload: null });
 	}
 
+	const user = store.getState().firstName;
+
+	
 	return (
 		<div>
-			<h2>Welcome back! What's cooking?</h2>
+			<h2>{`${`Welcome back, ${
+				user === null ? "Stranger" : user
+			}`}! What's cooking?`}</h2>
 			<Button className={styles.homeCTAButtons} onClick={() => logout()}>
 				Logout
 			</Button>

@@ -1,12 +1,15 @@
 import { createStore } from "redux";
 
 interface IUserState {
-	firstName: string;
+	firstName: string | null;
+	lastName: string | null;
+	email: string | null;
+	birthday: string | null;
 }
 
 interface IUserAction {
 	type: string;
-	payload: string | null;
+	payload: IUserState | null;
 }
 
 function saveStateInStorage(state: IUserState) {
@@ -21,22 +24,41 @@ function saveStateInStorage(state: IUserState) {
 function loadStateFromStorage() {
 	try {
 		const state = localStorage.getItem("userState");
-		if (state) {
+		if (state !== null) {
 			let userInfo = JSON.parse(state);
-			return userInfo.firstName;
+			return userInfo;
+		} else {
+			return {
+				firstName: null,
+				lastName: null,
+				birthday: null,
+				email: null,
+			};
 		}
 	} catch {
 		console.error("There was a problem loading user state from localStorage");
 	}
 }
 
-function userReducer(state = { firstName: loadStateFromStorage() }, action: IUserAction) {
+function userReducer(state = loadStateFromStorage(), action: IUserAction) {
 	switch (action.type) {
 		case "loggedIn": {
-			return { ...state, firstName: action.payload };
+			return {
+				...state,
+				firstName: action.payload?.firstName,
+				lastName: action.payload?.lastName,
+				birthday: action.payload?.birthday,
+				email: action.payload?.email,
+			};
 		}
 		case "loggedOut":
-			return { ...state, firstName: null };
+			return {
+				...state,
+				firstName: null,
+				lastName: null,
+				birthday: null,
+				email: null,
+			};
 		default:
 			return state;
 	}

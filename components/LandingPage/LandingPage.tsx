@@ -8,23 +8,12 @@ import { store } from "../../reduxTest";
 function LandingPage() {
 	const [showLogin, setShowLogin] = useState<boolean>(false);
 	const [showSignup, setShowSignup] = useState<boolean>(false);
-	const [userName, setUserName] = useState<string | null>(null);
-
-	function handleUserInfo() {
-		const userInfo = store.getState();
-		setUserName(userInfo.firstName);
-	}
-
-	useEffect(() => {
-		handleUserInfo();
-	}, [showLogin, showSignup]);
 
 	return (
 		<>
 			<div className={styles.heroContainer}>
 				<h1 className={styles.heroStatement}>
-					Welcome to your kitchen's new best friend,{" "}
-					{userName ? `${userName}!` : "Stranger."}
+					Welcome to your kitchen's new best friend.
 				</h1>
 				<div className={styles.buttonContainer}>
 					<Button
