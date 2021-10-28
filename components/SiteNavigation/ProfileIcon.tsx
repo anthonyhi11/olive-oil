@@ -1,3 +1,6 @@
+import styles from "../../styles/profileIcon.module.css";
+import Link from "next/link";
+
 interface IProfileIconProps {
 	firstInitial: string;
 	lastInitial: string;
@@ -5,11 +8,12 @@ interface IProfileIconProps {
 
 function ProfileIcon({ firstInitial, lastInitial }: IProfileIconProps) {
 	return (
-		<div>
-			<p>
-				{firstInitial} {lastInitial}
-			</p>
-		</div>
+		<Link href="/profile">
+			<div className={styles.profileIcon}>
+				{firstInitial}
+				{lastInitial}
+			</div>
+		</Link>
 	);
 }
 

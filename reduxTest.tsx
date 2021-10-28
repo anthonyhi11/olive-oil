@@ -23,20 +23,16 @@ function saveStateInStorage(state: IUserState) {
 
 function loadStateFromStorage() {
 	try {
-		const state = localStorage.getItem("userState");
-		if (state !== null) {
-			let userInfo = JSON.parse(state);
-			return userInfo;
-		} else {
-			return {
-				firstName: null,
-				lastName: null,
-				birthday: null,
-				email: null,
-			};
+		if (typeof window !== "undefined") {
+			const state = localStorage.getItem("userState");
+			if (state !== null) {
+				let userInfo = JSON.parse(state);
+				return userInfo;
+			}
 		}
-	} catch {
+	} catch (err) {
 		console.error("There was a problem loading user state from localStorage");
+		console.log(err);
 	}
 }
 

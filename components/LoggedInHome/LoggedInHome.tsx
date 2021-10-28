@@ -9,7 +9,6 @@ function LoggedInHome() {
 
 	const user = store.getState().firstName;
 
-	
 	return (
 		<div>
 			<h2>{`${`Welcome back, ${

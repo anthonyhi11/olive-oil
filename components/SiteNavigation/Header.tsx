@@ -24,10 +24,10 @@ function Header({ active }: IHeaderProps) {
 
 	const unsubscribe = store.subscribe(() => {
 		const user = store.getState();
-		if (user.firstName !== null) {
+		if (user) {
 			const userInitials: IUserInitials = {
-				first: user.firstName[0],
-				last: user.lastName[0],
+				first: user?.firstName[0],
+				last: user?.lastName[0],
 			};
 			setUserInitials(userInitials);
 		} else {
@@ -37,10 +37,10 @@ function Header({ active }: IHeaderProps) {
 
 	useEffect(() => {
 		const user = store.getState();
-		if (user.firstName !== null) {
+		if (user) {
 			const userInitials: IUserInitials = {
-				first: user.firstName[0],
-				last: user.lastName[0],
+				first: user?.firstName[0],
+				last: user?.lastName[0],
 			};
 			setUserInitials(userInitials);
 		} else {

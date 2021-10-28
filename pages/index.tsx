@@ -9,12 +9,12 @@ export default function Home() {
 
 	const unsubscribe = store.subscribe(() => {
 		const user = store.getState();
-		setUserLoggedIn(user?.firstName);
+		setUserLoggedIn(user.firstName);
 	});
 
 	useEffect(() => {
 		const userInfo = store.getState();
-		if (userInfo.firstName !== null) {
+		if (userInfo) {
 			setUserLoggedIn(true);
 		} else {
 			setUserLoggedIn(false);
