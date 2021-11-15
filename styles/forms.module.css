@@ -1,0 +1,4 @@
+.form_error {
+	/* lol look up the prefix required to make this change */
+	color: red !important;
+}

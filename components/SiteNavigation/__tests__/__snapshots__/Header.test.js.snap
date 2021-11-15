@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders and matches snapshot 1`] = `
+<div>
+  <nav
+    class="navbar navbar-expand navbar-light sticky-top"
+    gb="light"
+  >
+    <a
+      class="navbar-brand"
+      href="/"
+    >
+      Olive Oil
+    </a>
+    <div
+      class="navbar-nav"
+    >
+      <div
+        class="nav-item"
+      >
+        <a
+          class="nav-link active"
+          data-rb-event-key="/"
+          href="/"
+        >
+          Home
+        </a>
+      </div>
+      <div
+        class="nav-item"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="/about"
+          href="/about"
+        >
+          About
+        </a>
+      </div>
+      <div
+        class="nav-item"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="/scraper"
+          href="/scraper"
+        >
+          Scraper
+        </a>
+      </div>
+      <div
+        class="nav-item"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="/contact"
+          href="/contact"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+`;
